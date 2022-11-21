@@ -58,6 +58,11 @@ kb_client.add(b1)
 
 @dp.message_handler(commands=['start'])
 async def process_start_command(message: types.Message):
+    with open('user_id.txt', 'r+') as user_id:
+        if str(message.chat.id) in user_id.read():
+            pass
+        else:
+            print(message.chat.id, file=user_id)
     await message.reply("Выбери номер матча,что бы узнать, на каких каналах будет трансляция\n",reply_markup=kb_client)
     await message.reply(format_menu)
 
