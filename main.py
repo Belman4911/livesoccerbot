@@ -43,9 +43,18 @@ bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
 
 @dp.message_handler(commands=['start'])
-async def process_start_command(message: types.Message):
-    await message.reply("Привет!\nВыбери номер матча\n")
-    await message.reply(format_menu)
+
+async def send_welcome(message: types.Message):
+   kb = [
+       [
+           types.KeyboardButton(text="Выбрать матч?"),
+                  ],
+   ]
+   keyboard = types.ReplyKeyboardMarkup(keyboard=kb)
+
+    async def process_start_command(message: types.Message):
+        await message.reply("Привет!\nВыбери номер матча\n")
+        await message.reply(format_menu)
 
 @dp.message_handler()
 async def echo_message(msg: types.Message):
