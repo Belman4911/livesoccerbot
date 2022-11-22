@@ -58,6 +58,10 @@ kb_client.add(b1)
 
 @dp.message_handler(commands=['start'])
 async def process_start_command(message: types.Message):
+    current_datetime = datetime.now()
+    month = current_datetime.month
+    year = current_datetime.year
+    day = current_datetime.day
     with open('user_id.txt', 'r+') as user_id:
         if str(message.chat.id) in user_id.read():
             pass
