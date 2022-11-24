@@ -44,7 +44,7 @@ format_menu=format_menu.replace(',', '  - ')
 format_menu=format_menu.replace("'", "")
 
 
-TOKEN = '5679521323:AAEAFCdA2XWLKcGjxfUs-65hCYzr8vPcPeQ'
+TOKEN = '5366008393:AAE4rlmjah9Gw1TBRMC4PBkAKan-3Pm27Dw'
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
