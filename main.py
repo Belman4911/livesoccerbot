@@ -58,24 +58,33 @@ kb_client.add(b1)
 
 @dp.message_handler(commands=['start'])
 async def process_start_command(message: types.Message):
-    current_datetime = datetime.now()
-    month = current_datetime.month
-    year = current_datetime.year
-    day = current_datetime.day
-    with open('user_id.txt', 'r+') as user_id:
-        if str(message.chat.id) in user_id.read():
-            pass
-        else:
-            print(message.chat.id, file=user_id)
+    user_id[message.chat.id] = (message.from_user.username)
+    print(user_id)
     await message.reply("Выбери номер матча,что бы узнать, на каких каналах будет трансляция\n",reply_markup=kb_client)
     await message.reply(format_menu)
+current_datetime = datetime.now()
+month1 = current_datetime.month
+year1 = current_datetime.year
+day1 = current_datetime.day
 
 @dp.message_handler()
 async def echo_message(msg: types.Message):
-    numb = (menu[int(msg.text)])
-    info = (spisok[numb])
-    await bot.send_message(msg.from_user.id, numb)
-    await bot.send_message(msg.from_user.id, info)
+
+    if str(msg.text.lower()) == "статистика":
+        await bot.send_message(msg.from_user.id, user_id)
+    else:
+        numb = (menu[int(msg.text)])
+        info = (spisok[numb])
+        await bot.send_message(msg.from_user.id, numb)
+        await bot.send_message(msg.from_user.id, info)
+
+if month1 > month:
+    month = month1
+if day1 > day:
+    day = day1
+if year1 > year:
+    year = year1
+
 
 
 
