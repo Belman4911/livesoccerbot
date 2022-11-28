@@ -3,16 +3,20 @@ from aiogram.dispatcher import Dispatcher
 from aiogram.utils import executor
 from aiogram.types import ReplyKeyboardRemove, ReplyKeyboardMarkup, KeyboardButton
 from datetime import datetime
+import time
 
 import requests
 from bs4 import BeautifulSoup as b
 
-current_datetime = datetime.now()
-month = current_datetime.month
-year = current_datetime.year
-day = current_datetime.day
+while 1 == 1:
+    global d, m, y
+    time.sleep(1)
+    current_datetime = datetime.now()
+    m = current_datetime.month
+    y = current_datetime.year
+    d = current_datetime.day
 user_id=dict()
-URL = f"""https://liveonsat.com/2day.php?start_dd={day}&start_mm={month}&start_yyyy={year}&end_dd={day}&end_mm={month}&end_yyyy={year}"""
+URL = f"""https://liveonsat.com/2day.php?start_dd={d}&start_mm={m}&start_yyyy={y}&end_dd={d}&end_mm={m}&end_yyyy={y}"""
 r = requests.get(URL)
 
 soup = b(r.text, 'html.parser')
@@ -62,10 +66,7 @@ async def process_start_command(message: types.Message):
     print(user_id)
     await message.reply("Выбери номер матча,что бы узнать, на каких каналах будет трансляция\n",reply_markup=kb_client)
     await message.reply(format_menu)
-current_datetime = datetime.now()
-month1 = current_datetime.month
-year1 = current_datetime.year
-day1 = current_datetime.day
+
 
 @dp.message_handler()
 async def echo_message(msg: types.Message):
@@ -78,13 +79,6 @@ async def echo_message(msg: types.Message):
         info = (spisok[numb])
         await bot.send_message(msg.from_user.id, numb)
         await bot.send_message(msg.from_user.id, info)
-
-if month1 > month:
-    month = month1
-if day1 > day:
-    day = day1
-if year1 > year:
-    year = year1
 
 
 
