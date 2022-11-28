@@ -73,7 +73,7 @@ async def echo_message(msg: types.Message):
 
     if str(msg.text.lower()) == "статистика":
         await bot.send_message(msg.from_user.id, user_id)
-        await bot.send_message(msg.from_user.id, day1)
+        await bot.send_message(msg.from_user.id, d)
     else:
         numb = (menu[int(msg.text)])
         info = (spisok[numb])
