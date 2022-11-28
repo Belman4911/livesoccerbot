@@ -8,7 +8,7 @@ import time
 import requests
 from bs4 import BeautifulSoup as b
 
-while 1 == 1:
+if 1 == 1:
     global d, m, y
     time.sleep(1)
     current_datetime = datetime.now()
